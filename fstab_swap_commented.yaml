@@ -1,0 +1,12 @@
+--- # Playbook will comment out the "swap" line in /etc/fstab
+- hosts: all
+  become: yes
+  
+  tasks:
+  - name: Comment out the "swap" entry in /etc/fstab
+    lineinfile:
+      path: /etc/fstab
+      backrefs: yes
+      regexp: '^/swap.img'
+      line: '#/swap.img      none    swap    sw      0       0'
+      
